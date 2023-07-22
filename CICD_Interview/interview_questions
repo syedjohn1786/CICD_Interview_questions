@@ -1,3 +1,101 @@
-interview_questions.se 
+
 Please find the CICD interview questions below
+=======================================================================
+
+1).  Can you explain the CICD process in your current project ?
+Ans : 
+
+a. Code Commit: Developers commit code changes to a Git repository hosted on GitHub.
+b. Jenkins Build: Jenkins is triggered to build the code using Maven. Maven builds the code and runs unit tests.
+c. Code Analysis: Sonar is used to perform static code analysis to identify any code quality issues, security vulnerabilities, and bugs.
+d. Security Scan: AppScan is used to perform a security scan on the application to identify any security vulnerabilities.
+e. Deploy to Dev Environment: If the build and scans pass, Jenkins deploys the code to a development environment managed by Kubernetes.
+f. Continuous Deployment: ArgoCD is used to manage continuous deployment. ArgoCD watches the Git repository and automatically deploys new changes to the development environment as soon as they are committed.
+g. Promote to Production: When the code is ready for production, it is manually promoted using ArgoCD to the production environment.
+h. Monitoring: The application is monitored for performance and availability using Kubernetes tools and other monitoring tools.
+
+====================
+2). What are the different ways to trigger jenkins pipelines ?
+Ans :
+
+	 There are multiple ways that a jenkins pipeline can be triggered  
+	   
+	a. Manual Trigger: Users can manually start the pipeline execution through the Jenkins web interface by clicking on the "Build Now" button or selecting the pipeline and choosing the "Build Now" option.
+	
+	b. Webhooks: Jenkins can be set up to listen to incoming webhooks from external systems (e.g., GitHub, Bitbucket, GitLab). When an event occurs, such as a code push or pull request, the webhook triggers the pipeline.
+	
+	c. Scheduled Trigger: Pipelines can be scheduled to run at specific times or in regular intervals using Jenkins' built-in scheduler. This is handy for automating periodic tasks.
+	
+	d. Jenkins CLI: The Jenkins Command-Line Interface (CLI) can be used to start a pipeline build, making it suitable for scripting or automation purposes.
+	
+	e. Pipeline DSL: Jenkins pipelines can be defined using a Jenkins file, which is written in Groovy. The pipeline script can include logic to trigger the pipeline based on custom conditions or external factors.
+=====================
+
+3). How do you store/secure/handle secrets in Jenkins ?
+Ans :
+
+   a. Credentials Plugin: Jenkins provides a credentials plugin that can be used to store secrets such as passwords, API keys, and certificates. The secrets are encrypted and stored securely within Jenkins, and can be easily retrieved in build scripts or used in other plugins.
+   
+   b. Environment Variables: Secrets can be stored as environment variables in Jenkins and referenced in build scripts. However, this method is less secure because environment variables are visible in the build logs.
+   
+   c. Hashicorp Vault: Jenkins can be integrated with Hashicorp Vault, which is a secure secrets management tool. Vault can be used to store and manage sensitive information, and Jenkins can retrieve the secrets as needed for builds.
+   
+   d. Third-party Secret Management Tools: Jenkins can also be integrated with third-party secret management tools such as AWS Secrets Manager, Google Cloud Key Management Service, and Azure Key Vault.
+=======================
+
+4). What is shared modules in Jenkins ?
+Ans :
+
+Shared modules in Jenkins refer to a collection of reusable code and resources that can be shared across multiple Jenkins jobs.
+This allows for easier maintenance, reduced duplication, and improved consistency across multiple build processes. 
+========================
+
+5). can you use Jenkins to build applications with multiple programming languages using different agents in different stages ?
+Ans :
+
+Yes, Jenkins can be used to build applications with multiple programming languages by using different build agents in different stages of the build process.
+
+For example, you can use one agent for compiling Java code and another agent for building a Node.js application. 
+The agents can be configured to use different operating systems, different versions of programming languages, and different libraries and tools.
+============================
+
+6). How to setup auto-scaling group for Jenkins in AWS ?
+Ans :
+
+    a.  Launch EC2 instances: Create an Amazon Elastic Compute Cloud (EC2) instance with the desired configuration and install Jenkins on it. This instance will be used as the base image for the autoscaling group.
+    
+    b.  Create Launch Configuration: Create a launch configuration in AWS Auto Scaling that specifies the EC2 instance type, the base image (created in step 1), and any additional configuration settings such as storage, security groups, and key pairs.
+    
+    c.  Create Autoscaling Group: Create an autoscaling group in AWS Auto Scaling and specify the launch configuration created in step 2. Also, specify the desired number of instances, the minimum number of instances, and the maximum number of instances for the autoscaling group.
+    
+    d.  Configure Scaling Policy: Configure a scaling policy for the autoscaling group to determine when new instances should be added or removed from the group. This can be based on the average CPU utilization of the instances or other performance metrics.
+    
+    e.  Load Balancer: Create a load balancer in Amazon Elastic Load Balancer (ELB) and configure it to forward traffic to the autoscaling group.
+    
+    f.  Connect to Jenkins: Connect to the Jenkins instance using the load balancer endpoint or the public IP address of one of the instances in the autoscaling group.
+    
+    g.  Monitoring: Monitor the instances in the autoscaling group using Amazon CloudWatch to ensure that they are healthy and that the autoscaling policy is functioning as expected.
+
+ By using an autoscaling group for Jenkins, you can ensure that you have the appropriate number of instances available to handle the load on your build processes, and that new instances can be added or removed automatically as needed. 
+This helps to ensure the reliability and scalability of your Jenkins environment.
+==============================
+
+7). How to add a new worker node in Jenkins ?
+Ans :
+
+ Log into the Jenkins master and navigate to Manage Jenkins > Manage Nodes > New Node. Enter a name for the new node and select Permanent Agent. Configure SSH and click on Launch.
+==============================
+
+8). How to add a new plugin in Jenkins ?
+Ans :
+
+Using the CLI, java -jar jenkins-cli.jar install-plugin <PLUGIN_NAME>
+
+Using the UI,
+
+a. Click on the "Manage Jenkins" link in the left-side menu.
+b. Click on the "Manage Plugins" link.
+==============================
+
+
 
